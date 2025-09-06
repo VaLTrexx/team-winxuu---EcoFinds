@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bid Review - MyMarketplace</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: #f8f9fa;
+      color: #333;
+    }
+
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .review-container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .review-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .review-container img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+
+    .review-container p {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">MyMarketplace</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="bid.html">New Bid</a>
+    </nav>
+  </header>
+
+  <div class="review-container">
+    <h2>Your Bid is Under Review</h2>
+    <p>You will be notified shortly. Here are your bid details:</p>
+    <p><strong>Product:</strong> <span id="pname"></span></p>
+    <p><strong>Description:</strong> <span id="desc"></span></p>
+    <p><strong>Starting Price:</strong> $<span id="price"></span></p>
+    <p><strong>End Date:</strong> <span id="end"></span></p>
+    <img id="productImage" alt="Product Image">
+  </div>
+
+  <script>
+    const bidData = JSON.parse(localStorage.getItem('bidData'));
+    if (bidData) {
+      document.getElementById('pname').textContent = bidData.pname;
+      document.getElementById('desc').textContent = bidData.desc;
+      document.getElementById('price').textContent = bidData.price;
+      document.getElementById('end').textContent = bidData.end;
+      document.getElementById('productImage').src = bidData.image;
+    } else {
+      document.querySelector('.review-container').innerHTML = "<p>No bid data found.</p>";
+    }
+  </script>
+</body>
+</html>
